@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_7_note_app/views/NotePage.dart';
+import 'package:flutter_app_7_note_app/views/Note_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,10 +12,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          brightness: Brightness.dark,
-          scaffoldBackgroundColor: Colors.grey[850]),
-      home:  NotePage(),
+      theme: ThemeData(brightness: Brightness.dark, fontFamily: 'Poppins'),
+      home: const NotePage(),
     );
   }
 }
