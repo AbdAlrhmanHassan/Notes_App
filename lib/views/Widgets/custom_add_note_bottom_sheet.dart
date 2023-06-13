@@ -44,11 +44,20 @@ class _AddNoteFormState extends State<AddNoteForm> {
               hintText: "Contnt",
               maxLines: 5,
               onSaved: (data) => subTitle = data),
-          const Expanded(
+          Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                CustomButton(),
+                CustomButton(
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                    } else {
+                      awtoValidateMode = AutovalidateMode.always;
+                      setState(() {});
+                    }
+                  },
+                ),
               ],
             ),
           )
