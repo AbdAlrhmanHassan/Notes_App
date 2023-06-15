@@ -28,4 +28,5 @@ flutter:
   fonts:
     - family: Poppins
       fonts:
-        - asset: lib/assets/font_assets/Poppins-Regular.ttf
+        - asset: lib/asset/font_assets/Poppins-Regular.ttf
+                

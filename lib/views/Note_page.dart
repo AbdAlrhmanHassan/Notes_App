@@ -17,7 +17,7 @@ class NotePage extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 8.0),
           child: Text("Notes"),
         ),
-        actions:  const [CustomSearchIcon(icon:Icon(Icons.search))],
+        actions: const [CustomSearchIcon(icon: Icon(Icons.search))],
       ),
       body: const Padding(
           padding: EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 0),
@@ -25,6 +25,7 @@ class NotePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             showModalBottomSheet(
+              isScrollControlled: true,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12)),
               context: context,
@@ -35,7 +36,5 @@ class NotePage extends StatelessWidget {
           },
           child: const Icon(Icons.add)),
     );
- 
   }
 }
-
