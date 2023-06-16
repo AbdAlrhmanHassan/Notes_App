@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_7_note_app/cubit/add_notes_cubit/add_notes_cubit.dart';
 import 'package:flutter_app_7_note_app/models/note_models.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import 'custom_button.dart';
 import 'custom_text_field.dart';
@@ -23,11 +24,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
   String? title;
   String? subTitle;
 
-
- 
   @override
   Widget build(BuildContext context) {
- 
     return Form(
         key: formKey,
         autovalidateMode: awtoValidateMode,
@@ -40,7 +38,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                   hintText: "Contnt",
                   maxLines: 5,
                   onSaved: (data) => subTitle = data),
-              SizedBox(
+              const SizedBox(
                 height: 75,
               ),
               BlocBuilder<AddNotesCubit, AddNotesState>(
@@ -50,10 +48,14 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     onTap: () {
                       if (formKey.currentState!.validate()) {
                         formKey.currentState!.save();
+
+                        var formattedCurrentDate =
+                            DateFormat.yMEd().format(DateTime.now());
+
                         var noteModel = NoteModel(
                             title: title!,
                             subTitle: subTitle!,
-                            date: DateTime.now().toString(),
+                            date: formattedCurrentDate.toString(),
                             color: Colors.blue.value);
                         BlocProvider.of<AddNotesCubit>(context)
                             .addNote(noteModel);

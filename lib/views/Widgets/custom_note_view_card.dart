@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_7_note_app/cubit/note_cubit/notes_page_cubit.dart';
+import 'package:flutter_app_7_note_app/models/note_models.dart';
 import 'package:flutter_app_7_note_app/views/Edit_note_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key});
+  const NoteItem({super.key, required this.noteModel});
+
+  final NoteModel noteModel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,19 +24,19 @@ class NoteItem extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: const Color(0xffffcd7a),
+          color: Color(noteModel.color),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
           ListTile(
             minVerticalPadding: 0,
             contentPadding: const EdgeInsets.all(0),
-            title: const Text(
-              "Flutter tips",
-              style: TextStyle(color: Colors.black, fontSize: 24),
+            title: Text(
+              noteModel.title,
+              style: const TextStyle(color: Colors.black, fontSize: 24),
             ),
             subtitle: Text(
-              "Here you can write your notes . ",
+              noteModel.subTitle,
               style: TextStyle(
                   color: Colors.black.withOpacity(.5),
                   fontSize: 20,
@@ -39,7 +44,22 @@ class NoteItem extends StatelessWidget {
             ),
             trailing: IconButton(
               padding: const EdgeInsets.all(0),
-              onPressed: () {},
+              onPressed: () {
+                // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                //   backgroundColor: Colors.white,
+                //   content: const Text('are you shore ',
+                //       style: TextStyle(fontSize: 16)),
+                //   duration: const Duration(seconds: 3),
+                //   padding:
+                //       const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+                //   behavior: SnackBarBehavior.floating,
+                //   shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(10.0)),
+                // ));
+                noteModel.delete();
+
+                BlocProvider.of<NotesPageCubit>(context).reloadPage();
+              },
               icon: const Icon(
                 Icons.delete,
                 color: Colors.black,
@@ -47,9 +67,9 @@ class NoteItem extends StatelessWidget {
               ),
             ),
           ),
-          const Text(
-            "June 11,2023",
-            style: TextStyle(color: Colors.black, fontSize: 18),
+          Text(
+            noteModel.date,
+            style: const TextStyle(color: Colors.black, fontSize: 18),
           )
         ]),
       ),

@@ -16,14 +16,18 @@ class IteamListViewBuilder extends StatelessWidget {
       builder: (context, state) {
         List<NoteModel> notes =
             BlocProvider.of<NotesPageCubit>(context).fetchAllNotes();
+
+        
         print("$notes[]  dfsafdsaasfdasdasdf");
         return ListView.builder(
           itemCount: notes.length,
           padding: EdgeInsets.zero,
           itemBuilder: (context, index) {
-            return const Padding(
+            return Padding(
               padding: EdgeInsets.symmetric(vertical: 6.0),
-              child: NoteItem(),
+              child: NoteItem(
+                noteModel: notes[index],
+              ),
             );
           },
         );

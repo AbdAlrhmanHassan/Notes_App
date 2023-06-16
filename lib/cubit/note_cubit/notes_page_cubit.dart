@@ -9,12 +9,14 @@ part 'notes_page_state.dart';
 
 class NotesPageCubit extends Cubit<NotesPageState> {
   NotesPageCubit() : super(NotesPageInitial());
+  Box<NoteModel> notesBox = Hive.box<NoteModel>(kNotesBox);
 
   List<NoteModel>? notes;
   List<NoteModel> fetchAllNotes() {
-    Box<NoteModel> notesBox = Hive.box<NoteModel>(kNotesBox);
     notes = notesBox.values.toList();
-
-    return notes ?? [];
+    return notes ??[];
+  }
+  void reloadPage() {
+    emit(NotesPageReload());
   }
 }

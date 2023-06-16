@@ -6,3 +6,4 @@ abstract class NotesPageState {}
 
 class NotesPageInitial extends NotesPageState {}
 
+class NotesPageReload extends NotesPageState {}

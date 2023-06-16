@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_7_note_app/cubit/add_notes_cubit/add_notes_cubit.dart';
+import 'package:flutter_app_7_note_app/cubit/note_cubit/notes_page_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'custom_add_note_form.dart';
@@ -9,9 +10,6 @@ class AddNoteBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
-    
     return BlocProvider(
       create: (context) => AddNotesCubit(),
       child: Container(
@@ -23,13 +21,13 @@ class AddNoteBottomSheet extends StatelessWidget {
         child: BlocConsumer<AddNotesCubit, AddNotesState>(
           listener: (context, state) {
             if (state is AddNotesSuccess) {
+              BlocProvider.of<NotesPageCubit>(context).reloadPage();
               Navigator.pop(context);
             } else if (state is AddNotesFailure) {
               print("faillied ${state.errMessage}");
             }
           },
           builder: (context, state) {
-              
             return AbsorbPointer(
               absorbing: state is AddNotesLoading ? true : false,
               child: const AddNoteForm(),
