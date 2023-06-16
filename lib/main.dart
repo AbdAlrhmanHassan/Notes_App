@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_7_note_app/cubit/add_notes_cubit/add_notes_cubit.dart';
 import 'package:flutter_app_7_note_app/models/note_models.dart';
 import 'package:flutter_app_7_note_app/simple_bloc_observer.dart';
 import 'package:flutter_app_7_note_app/views/Note_page.dart';
@@ -22,10 +21,9 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(brightness: Brightness.dark, fontFamily: 'Poppins'),
-        home: const NotePage(),
-      
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(brightness: Brightness.dark, fontFamily: 'Poppins'),
+      home: const NotePage(),
     );
   }
 }

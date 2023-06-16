@@ -9,6 +9,9 @@ class AddNoteBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+    
     return BlocProvider(
       create: (context) => AddNotesCubit(),
       child: Container(
@@ -26,7 +29,7 @@ class AddNoteBottomSheet extends StatelessWidget {
             }
           },
           builder: (context, state) {
-            
+              
             return AbsorbPointer(
               absorbing: state is AddNotesLoading ? true : false,
               child: const AddNoteForm(),
