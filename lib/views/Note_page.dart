@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_app_7_note_app/cubit/note_cubit/notes_page_cubit.dart';
 
 import 'Widgets/custom_add_note_bottom_sheet.dart';
 import 'Widgets/custom_search_icon.dart';

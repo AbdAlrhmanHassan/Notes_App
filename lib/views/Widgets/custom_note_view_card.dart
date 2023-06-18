@@ -16,7 +16,9 @@ class NoteItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const EditNotePage(),
+            builder: (context) => EditNotePage(
+              noteModel: noteModel,
+            ),
           ),
         );
       },
@@ -33,14 +35,17 @@ class NoteItem extends StatelessWidget {
             contentPadding: const EdgeInsets.all(0),
             title: Text(
               noteModel.title,
-              style: const TextStyle(color: Colors.black, fontSize: 24),
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500),
             ),
             subtitle: Text(
               noteModel.subTitle,
               style: TextStyle(
-                  color: Colors.black.withOpacity(.5),
+                  color: Colors.black.withOpacity(.6),
                   fontSize: 20,
-                  fontWeight: FontWeight.w500),
+                  fontWeight: FontWeight.w400),
             ),
             trailing: IconButton(
               padding: const EdgeInsets.all(0),
@@ -63,13 +68,13 @@ class NoteItem extends StatelessWidget {
               icon: const Icon(
                 Icons.delete,
                 color: Colors.black,
-                size: 26,
+                size: 24,
               ),
             ),
           ),
           Text(
             noteModel.date,
-            style: const TextStyle(color: Colors.black, fontSize: 18),
+            style: const TextStyle(color: Colors.black, fontSize: 14),
           )
         ]),
       ),

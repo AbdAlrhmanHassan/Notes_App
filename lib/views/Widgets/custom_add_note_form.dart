@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_7_note_app/constants.dart';
 import 'package:flutter_app_7_note_app/cubit/add_notes_cubit/add_notes_cubit.dart';
 import 'package:flutter_app_7_note_app/models/note_models.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import 'custom_button.dart';
+import 'custom_color_iteam.dart';
 import 'custom_text_field.dart';
 
 class AddNoteForm extends StatefulWidget {
@@ -41,6 +43,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
               const SizedBox(
                 height: 75,
               ),
+              const SizedBox(height: 60, child: ColorListView()),
               BlocBuilder<AddNotesCubit, AddNotesState>(
                 builder: (context, state) {
                   return CustomButton(
@@ -70,5 +73,43 @@ class _AddNoteFormState extends State<AddNoteForm> {
             ],
           ),
         ));
+  }
+}
+
+
+
+class ColorListView extends StatefulWidget {
+  const ColorListView({super.key});
+
+  @override
+  State<ColorListView> createState() => _ColorListViewState();
+}
+
+class _ColorListViewState extends State<ColorListView> {
+  int currentIndex = 0;
+
+  List<Color> colorsL = kColorList;
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: colorsL.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 3.0),
+          child: GestureDetector(
+              onTap: () {
+                currentIndex = index;
+
+                BlocProvider.of<AddNotesCubit>(context).color = colorsL[index];
+                setState(() {});
+              },
+              child: ColorItem(
+                isActive: currentIndex == index,
+                colorV: colorsL[index],
+              )),
+        );
+      },
+    );
   }
 }
